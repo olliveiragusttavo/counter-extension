@@ -54,7 +54,7 @@ class Stopwatch {
      */
     constructor(stopwatch) {
         this.hash = stopwatch?.hash ?? this.__generateHash();
-        this.name = stopwatch?.name ?? "stopwatch";
+        this.name = stopwatch?.name ?? currentLang.defaults.name;
         this.time = stopwatch?.time ?? 0;
         this.status = stopwatch?.status ?? false;
         this.updated_at = new Date(stopwatch?.updated_at ?? null);
@@ -276,7 +276,7 @@ class Stopwatch {
             if (this.__inputTimeIsValid(inputValue.value)) {
                 this.__performeUpdateTime(inputValue.value);
             } else {
-                this.__insertAlert(inputValue, "Incorrect time format. Expected 00:00:00 format");
+                this.__insertAlert(inputValue, lang.en.alerts.inputTime);
             }
         });
     }
@@ -406,7 +406,7 @@ class Stopwatch {
                     <div class="row">
                         <div class="col-12 input-group">
                             <span class="input-group-text text-secondary border-0">${hashTagIcon}</span>
-                            <input type="text" class="form-control border-0 p-1 fs-3" name="ce_stopwatch_name" value="${this.name}" placeholder="Stopwatch name">
+                            <input type="text" class="form-control border-0 p-1 fs-3" name="ce_stopwatch_name" value="${this.name}" placeholder="${currentLang.labels.name}">
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -418,15 +418,15 @@ class Stopwatch {
                         </div>
                         <div class="col-6 text-end">
                             <div class="btn-group" role="group" aria-label="Buttons control">
-                                <button type="button" class="btn text-danger ce_stopwatch_delete" title="Delete"">${deleteIcon}</a>
-                                <button type="button" class="btn text-warning ce_stopwatch_reset" title="Reset timer">${resetIcon}</a>
-                                <button type="button" class="btn text-primary ce_stopwatch_start" title="Resume/pause timer">${this.status ? pauseIcon : playIcon}</a>
+                                <button type="button" class="btn text-danger ce_stopwatch_delete" title="${currentLang.buttons.delete}">${deleteIcon}</a>
+                                <button type="button" class="btn text-warning ce_stopwatch_reset" title="${currentLang.buttons.reset}">${resetIcon}</a>
+                                <button type="button" class="btn text-primary ce_stopwatch_start" title="${currentLang.buttons.resumePause}">${this.status ? pauseIcon : playIcon}</a>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <span class="text-secondary">Last updated: ${this.getUpdatedAt()}</span>
+                            <span class="text-secondary">${currentLang.labels.updatedAt}: ${this.getUpdatedAt()}</span>
                         </div>
                     </div>
                 </div>
