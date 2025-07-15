@@ -10,12 +10,13 @@ lang['pt-BR'] = {
         'name': "Nome",
         'updatedAt': "Atualizado em",
         'about': "Sobre",
-        'report': "Reportar um problema"
+        'report': "Reportar um problema",
+        'theme': "Tema"
     },
     'buttons': {
         'resumePause': "Iniciar/pausar",
         'delete': "Excluir",
         'reset': "Reiniciar",
-        'new': "Novo Cronômetro"
+        'new': "Novo"
     }
 };
