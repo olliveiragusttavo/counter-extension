@@ -10,12 +10,13 @@ lang['en'] = {
         'name': "Name",
         'updatedAt': "Last updated",
         'about': "About",
-        'report': "Report an issue"
+        'report': "Report an issue",
+        'theme': "Theme"
     },
     'buttons': {
         'resumePause': "Resume/Pause",
         'delete': "Delete",
         'reset': "Reset",
-        'new': "New Stopwatch"
+        'new': "New"
     }
 };
