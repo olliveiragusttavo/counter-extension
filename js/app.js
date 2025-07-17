@@ -1,5 +1,9 @@
+import constants from './constants.js';
+import { getFromStorage, setOnStorage, threadError } from "./helper.js";
+import { lang } from './lang/lang.js';
+import Stopwatch from './stopwatch.js';
 
-class App {
+export default class App {
 
     static storageKey = 'counter_extension-app';
 
@@ -16,7 +20,7 @@ class App {
         );
 
         // this content is builded from here to support languages
-        this.buildContent();
+        this.__buildContent();
         // loading data from local storage
         this.loadDataFromLocalStorage();
         // adding listeners to the buttons
@@ -58,6 +62,7 @@ class App {
      * Returns the current theme based on the user's system preference.
      *
      * @returns {("dark" | "light")}
+     * @private
      */
     __getNavigatorTheme() {
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -107,17 +112,17 @@ class App {
      * @returns {void}
      * @private
      */
-    buildContent() {
+    __buildContent() {
         document.querySelector('.container').innerHTML = `
             <div class="row p-2">
-                <div class="col-1 text-center" id="ce_btn_theme" role="button" title="${currentLang.labels.theme}">
+                <div class="col-1 text-center" id="ce_btn_theme" role="button" title="${lang('labels.theme')}">
                     ${constants.icons[this.theme]}
                 </div>
                 <div class="col-7">
-                    <h4>${currentLang.labels.projectName}</h4>
+                    <h4>${lang('labels.projectName')}</h4>
                 </div>
                 <div class="col-4 text-end">
-                    <a id="ce_btn_new_stopwatch" class="btn btn-primary" href="#" role="button">${currentLang.buttons.new}</a>
+                    <a id="ce_btn_new_stopwatch" class="btn btn-primary" href="#" role="button">${lang('buttons.new')}</a>
                 </div>
             </div>
 
@@ -127,8 +132,8 @@ class App {
 
             <div class="row">
                 <div class="col p-2 text-center">
-                    <a class="me-2" target="_blank" href="https://github.com/olliveiragusttavo/counter-extension">${currentLang.labels.about}</a>
-                    <a target="_blank" href="https://github.com/olliveiragusttavo/counter-extension/issues">${currentLang.labels.report}</a>
+                    <a class="me-2" target="_blank" href="https://github.com/olliveiragusttavo/counter-extension">${lang('labels.about')}</a>
+                    <a target="_blank" href="https://github.com/olliveiragusttavo/counter-extension/issues">${lang('labels.report')}</a>
                 </div>
             </div>
         `;
