@@ -1,4 +1,4 @@
-const constants = {
+export default {
 
     defaultAlertTime: 5000,
 

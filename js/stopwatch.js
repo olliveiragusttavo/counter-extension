@@ -1,3 +1,7 @@
+import constants from "./constants.js";
+import { getFromStorage, setOnStorage, threadError } from "./helper.js";
+import { lang } from "./lang/lang.js";
+
 /**
  * @typedef StopwatchData
  * @property {string} hash
@@ -7,7 +11,7 @@
  * @property {string} updated_at
  */
 
-class Stopwatch {
+export default class Stopwatch {
 
     static keyStorage = 'counter_extension-stopwatch';
     static container = "#ce_div_stopwatch";
@@ -22,7 +26,7 @@ class Stopwatch {
      */
     constructor(stopwatch) {
         this.hash = stopwatch?.hash ?? this.__generateHash();
-        this.name = stopwatch?.name ?? currentLang.defaults.name;
+        this.name = stopwatch?.name ?? lang('defaults.name');
         this.time = stopwatch?.time ?? 0;
         this.status = stopwatch?.status ?? false;
         this.updated_at = new Date(stopwatch?.updated_at ?? null);
@@ -244,7 +248,7 @@ class Stopwatch {
             if (this.__inputTimeIsValid(inputValue.value)) {
                 this.__performeUpdateTime(inputValue.value);
             } else {
-                this.__insertAlert(inputValue, lang.en.alerts.inputTime);
+                this.__insertAlert(inputValue, lang('alerts.inputTime'));
             }
         });
     }
@@ -268,6 +272,7 @@ class Stopwatch {
      *
      * @param {string} inputValue - The input value in format `hh:mm:ss`
      * @returns {void}
+     * @private
      */
     __performeUpdateTime(inputValue) {
         if (this.status) {
@@ -287,6 +292,7 @@ class Stopwatch {
      * @param {HTMLElement} element
      * @param {string} html
      * @returns {void}
+     * @private
      */
     __insertAlert(element, html = "") {
         // remove any others alerts insert before. In this case is temp alerts
@@ -358,7 +364,7 @@ class Stopwatch {
                     <div class="row">
                         <div class="col-12 input-group">
                             <span class="input-group-text text-secondary border-0">${constants.icons.hashTag}</span>
-                            <input type="text" class="form-control border-0 p-1 fs-3" name="ce_stopwatch_name" value="${this.name}" placeholder="${currentLang.labels.name}">
+                            <input type="text" class="form-control border-0 p-1 fs-3" name="ce_stopwatch_name" value="${this.name}" placeholder="${lang('labels.name')}">
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -370,15 +376,15 @@ class Stopwatch {
                         </div>
                         <div class="col-6 text-end">
                             <div class="btn-group" role="group" aria-label="Buttons control">
-                                <button type="button" class="btn text-danger ce_stopwatch_delete" title="${currentLang.buttons.delete}">${constants.icons.delete}</a>
-                                <button type="button" class="btn text-warning ce_stopwatch_reset" title="${currentLang.buttons.reset}">${constants.icons.reset}</a>
-                                <button type="button" class="btn text-primary ce_stopwatch_start" title="${currentLang.buttons.resumePause}">${this.status ? constants.icons.pause : constants.icons.play}</a>
+                                <button type="button" class="btn text-danger ce_stopwatch_delete" title="${lang('buttons.delete')}">${constants.icons.delete}</a>
+                                <button type="button" class="btn text-warning ce_stopwatch_reset" title="${lang('buttons.reset')}">${constants.icons.reset}</a>
+                                <button type="button" class="btn text-primary ce_stopwatch_start" title="${lang('buttons.resumePause')}">${this.status ? constants.icons.pause : constants.icons.play}</a>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <span class="text-secondary">${currentLang.labels.updatedAt}: ${this.getUpdatedAt()}</span>
+                            <span class="text-secondary">${lang('labels.updatedAt')}: ${this.getUpdatedAt()}</span>
                         </div>
                     </div>
                 </div>
