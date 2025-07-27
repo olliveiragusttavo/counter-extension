@@ -64,6 +64,10 @@ export default class Stopwatch {
         // tracking last user action
         this.store();
 
+        // removing the elemento from paused stopwatch to put into running group
+        this.element.remove();
+        this.__insertIntoContainer();
+
         // define interval to increase one second in timer. This does not save the data in local storage. see the
         // `__calculateTime` method for more info about the timer
         this.interval = setInterval(() => {
@@ -88,7 +92,14 @@ export default class Stopwatch {
      */
     pause() {
         this.status = false;
+
+        // saving the new status. This will also update the `time` attribute and `updated_at`
         this.store();
+
+        // removing the elemento from running stopwatch to put into paused group
+        this.element.remove();
+        this.__insertIntoContainer();
+
         clearInterval(this.interval);
     }
 
@@ -198,10 +209,20 @@ export default class Stopwatch {
             this.__listeners();
 
             // insert the element in stopwatch container
-            document.querySelector(Stopwatch.container).appendChild(this.element);
+            this.__insertIntoContainer();
         } catch (error) {
             threadError(error);
         }
+    }
+
+    /**
+     * Put the elemento into the group based on status
+     *
+     * @returns {void}
+     * @private
+     */
+    __insertIntoContainer() {
+        document.querySelector(Stopwatch.container + (this.status ? '-running' : '-paused')).appendChild(this.element);
     }
 
     /**
