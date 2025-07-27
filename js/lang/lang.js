@@ -38,7 +38,7 @@ const currentLanguage = getLang();
  * Get text for interface based on current language
  *
  * @export
- * @param {'alerts.inputTime'|'defaults.name'|'labels.projectName'|'labels.name'|'labels.updatedAt'|'labels.about'|'labels.report'|'labels.theme'|'buttons.resumePause'|'buttons.delete'|'buttons.reset'|'buttons.new'} path
+ * @param {'alerts.inputTime'|'defaults.name'|'labels.projectName'|'labels.name'|'labels.updatedAt'|'labels.about'|'labels.report'|'labels.theme'|'buttons.resumePause'|'buttons.delete'|'buttons.reset'|'buttons.new'|'running'|'paused'} path
  * @returns {string}
  */
 export function lang(path) {

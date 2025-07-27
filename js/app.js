@@ -127,7 +127,18 @@ export default class App {
             </div>
 
             <div class="row" id="ce_div_stopwatch">
-                <!-- javascript -->
+                <div class="col-12">
+                    <h5 class="text-primary">${lang('labels.running')}</h5>
+                </div>
+                <div class="col-12 mb-4" id="ce_div_stopwatch-running">
+                    <!-- javascript -->
+                </div>
+                <div class="col-12">
+                    <h5 class="text-secondary">${lang('labels.paused')}</h5>
+                </div>
+                <div class="col-12" id="ce_div_stopwatch-paused">
+                    <!-- javascript -->
+                </div>
             </div>
 
             <div class="row">
