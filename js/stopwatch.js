@@ -282,8 +282,8 @@ export default class Stopwatch {
      * @private
      */
     __inputTimeIsValid(inputValue) {
-        // format 00:00:00
-        const regex = /^\d{2}:\d{2}:\d{2}$/;
+        // format h+:mm:ss (hours can grow beyond two digits)
+        const regex = /^\d+:\d{2}:\d{2}$/;
         return regex.test(inputValue);
     }
 
